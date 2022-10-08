@@ -1,13 +1,9 @@
 from fastapi import FastAPI
+from models.article import Article
+from models.news import News
+import temp_news
 
 app = FastAPI()
-
-roles = ['Бухгалтер', 'Ген. директор']
-
-spheres = [
-    {'role': 'Бухгалтер', 'spheres': ['Финансы', 'Учет', 'Законы']},
-    {'role': 'Ген. директор', 'spheres': ['Бизнес', 'Технологии', 'Управление']}
-    ]
 
 @app.get('/')
 async def root():
@@ -15,21 +11,12 @@ async def root():
 
 @app.get('/roles/')
 async def get_roles():
-    return roles
+    return remp_news.roles
 
 @app.get('/spheres/')
 async def get_spheres(role: str):
-    return next(sphere['spheres'] for sphere in spheres if sphere['role'] == role)
+    return temp_news.get_spheres(role)
 
 @app.get('/news/')
 async def get_news(role: str, sphere: str):
-    if sphere == 'Бизнес':
-        return {
-            'title': 'заголовок новости',
-            'content': 'бизнес-новость'
-        }
-    else:
-        return {
-            'title': 'заголовок новости',
-            'content': 'другая новость'
-        }
+    return temp_news.get_news(role, sphere)
