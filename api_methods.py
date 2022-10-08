@@ -11,7 +11,7 @@ async def root():
 
 @app.get('/roles/')
 async def get_roles():
-    return remp_news.roles
+    return temp_news.roles
 
 @app.get('/spheres/')
 async def get_spheres(role: str):
