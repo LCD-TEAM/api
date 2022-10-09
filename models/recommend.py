@@ -24,6 +24,7 @@ def recommend_buh(n: int):
     for p in range(n):
         recom_news = get_recom(target, role_vector, p, vectors, clusters, df)
         news.append(dict(recom_news[['title', 'content', 'date', 'tags']]))
+        news[-1]['tags'] = news[-1]['tags'].split(';')[:-1]
 
     return news
 
@@ -43,6 +44,7 @@ def recommend_gen(n: int):
     for p in range(n):
         recom_news = get_recom(target, role_vector, p, vectors, clusters, df)
         news.append(dict(recom_news[['title', 'content', 'date', 'tags']]))
+        news[-1]['tags'] = news[-1]['tags'].split(';')[:-1]
 
     return news
 
