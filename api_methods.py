@@ -26,7 +26,7 @@ async def root():
 async def get_valute_codes():
     return graphic.get_valutes()
 
-@app.get('/valute/{code}')
+@app.get('/valute/')
 async def get_valute_course(code: str):
     return graphic.get_course_values(code)
 
